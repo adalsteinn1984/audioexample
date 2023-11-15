@@ -133,7 +133,7 @@ All those WAV files would be added to IPFS or simlar and a simple NFT contract w
 
             async function loadAudioBuffers() {
                 for (const key in audioFiles) {
-                    buffers[key] = await loadAudioBuffer("/audio/" + audioFiles[key]);
+                    buffers[key] = await loadAudioBuffer(audioFiles[key]);
                 }
             }
 
