@@ -103,6 +103,8 @@ All those WAV files would be added to IPFS or simlar and a simple NFT contract w
 
 
         <script>
+            const doUsePre = false;
+
             // Initialize Web Audio API
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -133,7 +135,8 @@ All those WAV files would be added to IPFS or simlar and a simple NFT contract w
 
             async function loadAudioBuffers() {
                 for (const key in audioFiles) {
-                    buffers[key] = await loadAudioBuffer(audioFiles[key]);
+                    const pre = doUsePre ? "/audio/" : '';
+                    buffers[key] = await loadAudioBuffer(pre + audioFiles[key]);
                 }
             }
 
@@ -162,6 +165,8 @@ All those WAV files would be added to IPFS or simlar and a simple NFT contract w
 
             // Change variation function
             function changeVariation(channel, v) {
+                const old = settings[channel];
+
                 console.log('changeVariation', channel, v)
                 settings[channel] = v;
 
@@ -172,9 +177,9 @@ All those WAV files would be added to IPFS or simlar and a simple NFT contract w
                 const key = channel + variation;
 
                 // Stop the current source
-                if (sources[channel]) {
-                    sources[channel].stop();
-                    sources[channel].disconnect();
+                if (sources[channel + old]) {
+                    sources[channel + old].stop();
+                    sources[channel + old].disconnect();
                 }
 
                 // Create and start a new source
