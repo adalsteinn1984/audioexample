@@ -2,213 +2,1065 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Mixer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nova+Slim&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+  <title>Audio Mixer</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+  <!-- TODO: Make sure this library is not ok -->
 </head>
 
 <style>
-    body {
-        background-color: black;
-        color: white;
-        font-family: 'Courier New', Courier, monospace;
-    }
+  h1 {
+    font-size: 24px;
+  }
 
-    .channel {
-        margin: 16px;
-        display: flex;
-        flex-direction: row;
-    }
+  h2 {
+    font-size: 16px;
+  }
 
-    .play {
-        margin: 16px;
-    }
+  .m {
+    padding: 0 24px 0 0;
+  }
 
-    .lbl {
-        min-width: 200px;
-    }
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  body {
+    background-color: #f5f5f5;
+    color: white;
+
+    font-family: 'Nova Slim', sans-serif;
+  }
+
+  .bla {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .channel {
+    margin: 16px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .play {
+    margin: 16px;
+  }
+
+  .lbl {
+    min-width: 200px;
+  }
+
+  .player-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #f5f5f5;
+    min-height: 280px;
+  }
+
+  .the-main {
+    border: 10px solid #f5f5f5;
+    width: 500px;
+    background-color: #5c5e5c;
+
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 </style>
 
 <body>
+  <div class="box">
+    <div class="the-main">
 
-    <div>
+      <div class="player-head">
+        <div>
+          <img src="./playerpic.png" height="160" />
+        </div>
+        <div style="padding: 24px">
+          <h1>
+            Memories
+          </h1>
+          <h2>
+            Cristina Spinei
+          </h2>
+        </div>
 
-        <h1 style="padding: 16px">Audio experiment</h1>
+      </div>
 
-        <div class="channel">
-            <div class="lbl" for="channelA">Channel A (Kick):</div>
+
+      <div class="bla">
+        <div>
+
+          <div class="channel">
+            <!-- <div class="row">
+            <div class="m">Melody 1</div>
+            <div>Embellished</div>
+          </div>
+          <div class="row">
+            <div class="m">Melody 1</div>
+            <div>Distant</div>
+          </div>
+          <div class="row">
+            <div class="m">Melody 1</div>
+            <div>Faded</div>
+          </div> -->
+
+
+            <div class="lbl" for="channelA">Melody:</div>
             <select id="channelA" onchange="changeVariation('a', this.value)">
-                <option value="1">Variation 1 - 4th part notes</option>
-                <option value="2">Variation 2 - 8th part notes</option>
-                <option value="3">Variation 3 - 16th part notes</option>
+              <option value="1">Embellished</option>
+              <option value="2">Distant</option>
+              <option value="3">Faded</option>
             </select>
-        </div>
+          </div>
 
-        <div class="channel">
-            <div class="lbl" for="channelB">Channel B (Snare):</div>
+          <div class="channel">
+            <div class="lbl" for="channelB">Chords:</div>
             <select id="channelB" onchange="changeVariation('b', this.value)">
-                <option value="1">Variation 1 - 4th part notes</option>
-                <option value="2">Variation 2 - 8th part notes</option>
-                <option value="3">Variation 3 - 16th part notes</option>
+              <option value="1">Embellished</option>
+              <option value="2">Distant</option>
+              <option value="3">Faded</option>
             </select>
-        </div>
+          </div>
 
-        <div class="channel">
-            <div class="lbl" for="channelC">Channel C (Hihat):</div>
+          <div class="channel">
+            <div class="lbl" for="channelC">Synth:</div>
             <select id="channelC" onchange="changeVariation('c', this.value)">
-                <option value="1">Variation 1 - 4th part notes</option>
-                <option value="2">Variation 2 - 8th part notes</option>
-                <option value="3">Variation 3 - 16th part notes</option>
+              <option value="1">Embellished</option>
+              <option value="2">Distant</option>
+              <option value="3">Faded</option>
             </select>
-        </div>
+          </div>
 
-        <div class="channel">
-            <div class="lbl" for="channelD">Channel D (Tom):</div>
+          <div class="channel">
+            <div class="lbl" for="channelD">Texture:</div>
             <select id="channelD" onchange="changeVariation('d', this.value)">
-                <option value="1">Variation 1 - 4th part notes</option>
-                <option value="2">Variation 2 - 8th part notes</option>
-                <option value="3">Variation 3 -16th part notes</option>
+              <option value="1">Embellished</option>
+              <option value="2">Distant</option>
+              <option value="3">Faded</option>
             </select>
+          </div>
+
         </div>
-
-
+      </div>
+      <div class="bla">
         <button class="play" onclick="playAllChannels()">Play</button>
+        <button id="mint" onclick="connectAndMint()">Mint</button>
+      </div>
 
-        <br>
+      <script>
 
-        <pre class="play">
-In this example there are 4 channels.
-Each channel has 3 variations.
-So there are in total 81 variations (3*3*3*3)
+        const getVariationNumber = () => {
+          const dict = {
+            '1111': 1,
+            '1112': 2,
+            '1113': 3,
+            '1121': 4,
+            '1122': 5,
+            '1123': 6,
+            '1131': 7,
+            '1132': 8,
+            '1133': 9,
+            '1211': 10,
+            '1212': 11,
+            '1213': 12,
+            '1221': 13,
+            '1222': 14,
+            '1223': 15,
+            '1231': 16,
+            '1232': 17,
+            '1233': 18,
+            '1311': 19,
+            '1312': 20,
+            '1313': 21,
+            '1321': 22,
+            '1322': 23,
+            '1323': 24,
+            '1331': 25,
+            '1332': 26,
+            '1333': 27,
+            '2111': 28,
+            '2112': 29,
+            '2113': 30,
+            '2121': 31,
+            '2122': 32,
+            '2123': 33,
+            '2131': 34,
+            '2132': 35,
+            '2133': 36,
+            '2211': 37,
+            '2212': 38,
+            '2213': 39,
+            '2221': 40,
+            '2222': 41,
+            '2223': 42,
+            '2231': 43,
+            '2232': 44,
+            '2233': 45,
+            '2311': 46,
+            '2312': 47,
+            '2313': 48,
+            '2321': 49,
+            '2322': 50,
+            '2323': 51,
+            '2331': 52,
+            '2332': 53,
+            '2333': 54,
+            '3111': 55,
+            '3112': 56,
+            '3113': 57,
+            '3121': 58,
+            '3122': 59,
+            '3123': 60,
+            '3131': 61,
+            '3132': 62,
+            '3133': 63,
+            '3211': 64,
+            '3212': 65,
+            '3213': 66,
+            '3221': 67,
+            '3222': 68,
+            '3223': 69,
+            '3231': 70,
+            '3232': 71,
+            '3233': 72,
+            '3311': 73,
+            '3312': 74,
+            '3313': 75,
+            '3321': 76,
+            '3322': 77,
+            '3323': 78,
+            '3331': 79,
+            '3332': 80,
+            '3333': 81,
+          }
+          const a = '' + settings['a'] + settings['b'] + settings['c'] + settings['d'];
+          return dict[a];
+        }
 
-This example shows a simple drum loop to demonstrate that everything is in sync. 
+        async function connectAndMint() {
+          const el = document.getElementById('mint');
+          el.disabled = true;
+          el.innerText = "Minting..."
 
-There are 12 audio stems:
-a1.wav	a2.wav	a3.wav	b1.wav	b2.wav	b3.wav	c1.wav	c2.wav	c3.wav	d1.wav	d2.wav	d3.wav
+          const variation = getVariationNumber();
 
-There are 81 possible outcomes:
-a1b1c1d1.wav[1] a1b1c3d1.wav[2] a1b2c2d1.wav[3] a1b3c1d1.wav[4] a1b3c3d1.wav[5] a2b1c2d1.wav[6] a2b2c1d1.wav[7] a2b2c3d1.wav[8] a2b3c2d1.wav[9] a3b1c1d1.wav[10] a3b1c3d1.wav[11] a3b2c2d1.wav[12] a3b3c1d1.wav[13] a3b3c3d1.wav[14]
-a1b1c1d2.wav[15] a1b1c3d2.wav[16] a1b2c2d2.wav[17] a1b3c1d2.wav[18] a1b3c3d2.wav[19] a2b1c2d2.wav[20] a2b2c1d2.wav[21] a2b2c3d2.wav[22] a2b3c2d2.wav[23] a3b1c1d2.wav[24] a3b1c3d2.wav[25] a3b2c2d2.wav[26] a3b3c1d2.wav[27] a3b3c3d2.wav[28]
-a1b1c1d3.wav[29] a1b1c3d3.wav[30] a1b2c2d3.wav[31] a1b3c1d3.wav[32] a1b3c3d3.wav[33] a2b1c2d3.wav[34] a2b2c1d3.wav[35] a2b2c3d3.wav[36] a2b3c2d3.wav[37] a3b1c1d3.wav[38] a3b1c3d3.wav[39] a3b2c2d3.wav[40] a3b3c1d3.wav[41] a3b3c3d3.wav[42]
-a1b1c2d1.wav[43] a1b2c1d1.wav[44] a1b2c3d1.wav[45] a1b3c2d1.wav[46] a2b1c1d1.wav[47] a2b1c3d1.wav[48] a2b2c2d1.wav[49] a2b3c1d1.wav[50] a2b3c3d1.wav[51] a3b1c2d1.wav[52] a3b2c1d1.wav[53] a3b2c3d1.wav[54] a3b3c2d1.wav[55]
-a1b1c2d2.wav[56] a1b2c1d2.wav[57] a1b2c3d2.wav[58] a1b3c2d2.wav[59] a2b1c1d2.wav[60] a2b1c3d2.wav[61] a2b2c2d2.wav[62] a2b3c1d2.wav[63] a2b3c3d2.wav[64] a3b1c2d2.wav[65] a3b2c1d2.wav[66] a3b2c3d2.wav[67] a3b3c2d2.wav[68]
-a1b1c2d3.wav[69] a1b2c1d3.wav[70] a1b2c3d3.wav[71] a1b3c2d3.wav[72] a2b1c1d3.wav[73] a2b1c3d3.wav[74] a2b2c2d3.wav[75] a2b3c1d3.wav[76] a2b3c3d3.wav[77] a3b1c2d3.wav[78] a3b2c1d3.wav[79] a3b2c3d3.wav[80] a3b3c2d3.wav[81]
+          if (window.ethereum) {
+            try {
+              await window.ethereum.request({ method: 'eth_requestAccounts' });
+              const web3 = new Web3(window.ethereum);
 
-The number in the square bracket would be the number of each NFT. So there would be 81 NFTs in total. 
-I mixed all possible combinations using a terminal command called ffmpeg so mixing the final stems would follow the same process.
-
-All those WAV files would be added to IPFS or simlar and a simple NFT contract would be used for minting.
-
-    </pre>
-
-
-        <script>
-            const doUsePre = false;
-
-            // Initialize Web Audio API
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-            // Load audio files
-            const audioFiles = {
-                a1: 'a1.wav',
-                a2: 'a2.wav',
-                a3: 'a3.wav',
-                b1: 'b1.wav',
-                b2: 'b2.wav',
-                b3: 'b3.wav',
-                c1: 'c1.wav',
-                c2: 'c2.wav',
-                c3: 'c3.wav',
-                d1: 'd1.wav',
-                d2: 'd2.wav',
-                d3: 'd3.wav'
-            };
-
-            // Create audio buffers
-            const buffers = {};
-
-            async function loadAudioBuffer(file) {
-                const response = await fetch(file);
-                const arrayBuffer = await response.arrayBuffer();
-                return await audioContext.decodeAudioData(arrayBuffer);
-            }
-
-            async function loadAudioBuffers() {
-                for (const key in audioFiles) {
-                    const pre = doUsePre ? "/audio/" : '';
-                    buffers[key] = await loadAudioBuffer(pre + audioFiles[key]);
+              // Now you can use web3 to interact with the Ethereum blockchain.
+              // Replace the following lines with your minting logic.
+              const contractAddress = '0x6b0d51b8265f42dd6ebe5642ebc1a5b59de2bf3f';
+              const abi = [
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "approve",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "string",
+                      "name": "newBaseUri",
+                      "type": "string"
+                    }
+                  ],
+                  "name": "changeBaseUri",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "initialOwner",
+                      "type": "address"
+                    }
+                  ],
+                  "stateMutability": "nonpayable",
+                  "type": "constructor"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "sender",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "ERC721IncorrectOwner",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "operator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "ERC721InsufficientApproval",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "approver",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "ERC721InvalidApprover",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "operator",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "ERC721InvalidOperator",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "ERC721InvalidOwner",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "receiver",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "ERC721InvalidReceiver",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "sender",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "ERC721InvalidSender",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "ERC721NonexistentToken",
+                  "type": "error"
+                },
+                {
+                  "inputs": [],
+                  "name": "EnforcedPause",
+                  "type": "error"
+                },
+                {
+                  "inputs": [],
+                  "name": "ExpectedPause",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "OwnableInvalidOwner",
+                  "type": "error"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "account",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "OwnableUnauthorizedAccount",
+                  "type": "error"
+                },
+                {
+                  "anonymous": false,
+                  "inputs": [
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "approved",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": true,
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "Approval",
+                  "type": "event"
+                },
+                {
+                  "anonymous": false,
+                  "inputs": [
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "operator",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": false,
+                      "internalType": "bool",
+                      "name": "approved",
+                      "type": "bool"
+                    }
+                  ],
+                  "name": "ApprovalForAll",
+                  "type": "event"
+                },
+                {
+                  "anonymous": false,
+                  "inputs": [
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "previousOwner",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "newOwner",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "OwnershipTransferred",
+                  "type": "event"
+                },
+                {
+                  "inputs": [],
+                  "name": "pause",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "anonymous": false,
+                  "inputs": [
+                    {
+                      "indexed": false,
+                      "internalType": "address",
+                      "name": "account",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "Paused",
+                  "type": "event"
+                },
+                {
+                  "inputs": [],
+                  "name": "renounceOwnership",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "variation",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "safeMint",
+                  "outputs": [],
+                  "stateMutability": "payable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "from",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "safeTransferFrom",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "from",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    },
+                    {
+                      "internalType": "bytes",
+                      "name": "data",
+                      "type": "bytes"
+                    }
+                  ],
+                  "name": "safeTransferFrom",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "operator",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "bool",
+                      "name": "approved",
+                      "type": "bool"
+                    }
+                  ],
+                  "name": "setApprovalForAll",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "anonymous": false,
+                  "inputs": [
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "from",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": true,
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "indexed": true,
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "Transfer",
+                  "type": "event"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "from",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "transferFrom",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "newOwner",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "transferOwnership",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "unpause",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "anonymous": false,
+                  "inputs": [
+                    {
+                      "indexed": false,
+                      "internalType": "address",
+                      "name": "account",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "Unpaused",
+                  "type": "event"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "to",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "withdraw",
+                  "outputs": [],
+                  "stateMutability": "nonpayable",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "balanceOf",
+                  "outputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "",
+                      "type": "uint256"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "baseTokenURI",
+                  "outputs": [
+                    {
+                      "internalType": "string",
+                      "name": "",
+                      "type": "string"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "getApproved",
+                  "outputs": [
+                    {
+                      "internalType": "address",
+                      "name": "",
+                      "type": "address"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "owner",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "operator",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "isApprovedForAll",
+                  "outputs": [
+                    {
+                      "internalType": "bool",
+                      "name": "",
+                      "type": "bool"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "name",
+                  "outputs": [
+                    {
+                      "internalType": "string",
+                      "name": "",
+                      "type": "string"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "owner",
+                  "outputs": [
+                    {
+                      "internalType": "address",
+                      "name": "",
+                      "type": "address"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "ownerOf",
+                  "outputs": [
+                    {
+                      "internalType": "address",
+                      "name": "",
+                      "type": "address"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "paused",
+                  "outputs": [
+                    {
+                      "internalType": "bool",
+                      "name": "",
+                      "type": "bool"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "price",
+                  "outputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "",
+                      "type": "uint256"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "bytes4",
+                      "name": "interfaceId",
+                      "type": "bytes4"
+                    }
+                  ],
+                  "name": "supportsInterface",
+                  "outputs": [
+                    {
+                      "internalType": "bool",
+                      "name": "",
+                      "type": "bool"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [],
+                  "name": "symbol",
+                  "outputs": [
+                    {
+                      "internalType": "string",
+                      "name": "",
+                      "type": "string"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "tokenToType",
+                  "outputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "",
+                      "type": "uint256"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                },
+                {
+                  "inputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "tokenId",
+                      "type": "uint256"
+                    }
+                  ],
+                  "name": "tokenURI",
+                  "outputs": [
+                    {
+                      "internalType": "string",
+                      "name": "",
+                      "type": "string"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
                 }
+              ];
+
+              const contract = new web3.eth.Contract(abi, contractAddress);
+              const account = (await web3.eth.getAccounts())[0];
+
+              const result = contract.methods.safeMint(variation).send({ from: account, value: '10000000000000' })
+                .then(res => {
+                  console.log('success', res)
+                  alert('You successfully minted. Check your wallet for more info')
+                  el.innerText = "Mint"
+                  el.disabled = false;
+                })
+                .catch(err => {
+                  console.log('err', err);
+                  el.innerText = "Mint"
+                  el.disabled = false;
+                  alert('Error');
+                });
+            } catch (error) {
+              console.error(error);
             }
+          } else {
+            console.error('MetaMask not detected. Please install MetaMask.');
+          }
+        }
 
-            loadAudioBuffers();
+        // Initialize Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-            // Create audio sources and gain nodes
-            const sources = {};
-            const gains = {};
-            let settings = {
-                a: 1,
-                b: 1,
-                c: 1,
-                d: 1
-            };
+        // Load audio files
+        const audioFiles = {
+          a1: 'a1.wav',
+          a2: 'a2.wav',
+          a3: 'a3.wav',
+          b1: 'b1.wav',
+          b2: 'b2.wav',
+          b3: 'b3.wav',
+          c1: 'c1.wav',
+          c2: 'c2.wav',
+          c3: 'c3.wav',
+          d1: 'd1.wav',
+          d2: 'd2.wav',
+          d3: 'd3.wav'
+        };
 
-            function createSource(channel, variation) {
-                const key = channel + variation;
-                sources[key] = audioContext.createBufferSource();
-                sources[key].buffer = buffers[key];
-                gains[key] = audioContext.createGain();
-                sources[key].connect(gains[key]);
-                gains[key].connect(audioContext.destination);
-            }
+        // Create audio buffers
+        const buffers = {};
 
-            let isPlaying = false;
+        async function loadAudioBuffer(file) {
+          const response = await fetch(file);
+          const arrayBuffer = await response.arrayBuffer();
+          return await audioContext.decodeAudioData(arrayBuffer);
+        }
 
-            // Change variation function
-            function changeVariation(channel, v) {
-                const old = settings[channel];
+        async function loadAudioBuffers() {
+          for (const key in audioFiles) {
+            buffers[key] = await loadAudioBuffer(audioFiles[key]);
+          }
+        }
 
-                console.log('changeVariation', channel, v)
-                settings[channel] = v;
+        loadAudioBuffers();
 
-                variation = settings[channel];
+        // Create audio sources and gain nodes
+        const sources = {};
+        const gains = {};
+        let settings = {
+          a: 1,
+          b: 1,
+          c: 1,
+          d: 1
+        };
 
-                if (!isPlaying) return;
+        function createSource(channel, variation) {
+          const key = channel + variation;
+          sources[key] = audioContext.createBufferSource();
+          sources[key].buffer = buffers[key];
+          gains[key] = audioContext.createGain();
+          sources[key].connect(gains[key]);
+          gains[key].connect(audioContext.destination);
+        }
 
-                const key = channel + variation;
+        let isPlaying = false;
 
-                // Stop the current source
-                if (sources[channel + old]) {
-                    sources[channel + old].stop();
-                    sources[channel + old].disconnect();
-                }
+        // Change variation function
+        function changeVariation(channel, v) {
+          const old = settings[channel];
 
-                // Create and start a new source
-                createSource(channel, variation);
+          settings[channel] = v;
 
-                // Set the new source's playback time
-                const currentTime = audioContext.currentTime;
-                const elapsedTime = currentTime % sources[key].buffer.duration;
-                const offset = currentTime - elapsedTime;
+          variation = settings[channel];
 
-                console.log('elapsedTime', elapsedTime)
+          if (!isPlaying) return;
 
-                sources[key].start(0, elapsedTime);
-            }
+          const key = channel + variation;
 
-            // Play all channels function
-            function playAllChannels() {
-                isPlaying = true;
+          // Stop the current source
+          if (sources[channel + old]) {
+            sources[channel + old].stop();
+            sources[channel + old].disconnect();
+          }
 
-                // Initialize all channels with variation 1 and play
-                for (const channel of ['a', 'b', 'c', 'd']) {
-                    // console.log(channel)
-                    console.log('>>', settings[channel]);
-                    changeVariation(channel, settings[channel]);
-                }
-            }
-        </script>
+          // Create and start a new source
+          createSource(channel, variation);
+
+          // Set the new source's playback time
+          const currentTime = audioContext.currentTime;
+          const elapsedTime = currentTime % sources[key].buffer.duration;
+          const offset = currentTime - elapsedTime;
+
+          sources[key].start(0, elapsedTime);
+        }
+
+        // Play all channels function
+        function playAllChannels() {
+          isPlaying = true;
+
+          // Initialize all channels with variation 1 and play
+          for (const channel of ['a', 'b', 'c', 'd']) {
+            changeVariation(channel, settings[channel]);
+          }
+        }
+      </script>
 
     </div>
+  </div>
+
 </body>
 
 </html>
